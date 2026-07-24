@@ -35,3 +35,6 @@ next-env.d.ts
 # local dev/test artifacts
 /.playwright-cli/
 /output/
+
+# Local Netlify folder
+.netlify
