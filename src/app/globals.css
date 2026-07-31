@@ -434,7 +434,14 @@ a {
   gap: 1rem;
 }
 
+/* A trailing card left alone on its row stretches across it instead of sitting orphaned. */
+.project-grid > .project-card:nth-child(3n + 1):last-child {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
 .project-card {
+  position: relative;
   display: grid;
   min-width: 0;
   overflow: hidden;
@@ -541,6 +548,38 @@ a {
     border-color var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out),
     color var(--duration-fast) var(--ease-out);
+}
+
+/* The other card links sit above the stretched case-study overlay so they stay clickable.
+   The case link itself is deliberately left static, so its ::after resolves
+   against .project-card and covers the whole card. */
+.project-card__links a:not(.project-card__case),
+.project-card__links span {
+  position: relative;
+  z-index: 2;
+}
+
+.project-card__case {
+  border-color: var(--accent-bright);
+  background: rgba(134, 239, 172, 0.1);
+  color: var(--accent-bright);
+}
+
+/* Stretched link: the whole card is the hit area for the case study. */
+.project-card__case::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.project-card:has(.project-card__case:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.project-card__case:focus-visible {
+  outline: none;
 }
 
 .project-card__links .is-disabled {
@@ -747,6 +786,102 @@ a {
   padding: 0.45rem 0.7rem;
 }
 
+.visual--beone {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 70% 30%, rgba(74, 222, 128, 0.16), transparent 45%), #0b0f0a;
+}
+
+.beone-stack {
+  position: relative;
+  z-index: 2;
+  width: 74%;
+}
+
+.beone-ghost {
+  position: absolute;
+  left: 50%;
+  display: block;
+  height: 3.4rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: rgba(7, 9, 7, 0.72);
+}
+
+.beone-ghost--one {
+  top: -1.1rem;
+  width: 90%;
+  transform: translateX(-50%);
+}
+
+.beone-ghost--two {
+  top: -2.1rem;
+  width: 78%;
+  opacity: 0.55;
+  transform: translateX(-50%);
+}
+
+.beone-verdict {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  background: rgba(7, 9, 7, 0.94);
+  padding: 1.2rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.5);
+}
+
+.beone-verdict span {
+  color: var(--accent-bright);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.beone-verdict strong {
+  margin: 1.4rem 0 1.1rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.04em;
+}
+
+.beone-verdict__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.beone-verdict__tags i {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.3rem 0.6rem;
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.beone-verdict__tags .is-pass {
+  border-color: rgba(134, 239, 172, 0.5);
+  background: #15381f;
+  color: var(--accent-bright);
+}
+
+.beone-scan {
+  position: absolute;
+  right: 6%;
+  bottom: 7%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  padding: 0.45rem 0.7rem;
+  color: var(--accent-bright);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
 .visual--planner {
   display: grid;
   place-items: center;
@@ -800,6 +935,417 @@ a {
   font-size: 0.65rem;
   font-weight: 700;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+/* ---------------------------------------------------------------- case study */
+
+.case-hero {
+  padding-top: clamp(7rem, 12vw, 10rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 0.9rem;
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.case-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.case-hero__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 34rem;
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-hero h1 {
+  margin: 1.2rem 0 0;
+  font-size: clamp(3.4rem, 8vw, 6rem);
+  font-weight: 560;
+  letter-spacing: -0.07em;
+  line-height: 0.94;
+}
+
+.case-hero__headline {
+  max-width: 30ch;
+  margin: 1.6rem 0 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  font-weight: 460;
+  letter-spacing: -0.03em;
+  line-height: 1.32;
+  text-wrap: balance;
+}
+
+.case-hero__summary {
+  max-width: 52ch;
+  margin: 1.2rem 0 0;
+  color: var(--muted-strong);
+  line-height: 1.75;
+}
+
+.case-hero__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-hero__stack li {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.65rem;
+  color: var(--muted-strong);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+
+.case-hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 2.2rem;
+}
+
+.case-hero__visual {
+  min-height: clamp(20rem, 34vw, 28rem);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: #0c100b;
+}
+
+.case-metrics {
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.case-metrics dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--border);
+}
+
+.case-metrics dl > div {
+  background: var(--surface);
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.case-metrics dt {
+  color: var(--accent-bright);
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 560;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+.case-metrics dd {
+  max-width: 24ch;
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.case-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-top: 1px solid var(--border);
+}
+
+.case-section__head {
+  position: sticky;
+  top: 6.5rem;
+  align-self: start;
+}
+
+.case-section__head h2 {
+  margin: 1rem 0 0;
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-weight: 560;
+  letter-spacing: -0.06em;
+  line-height: 1.02;
+}
+
+.case-lead {
+  max-width: 62ch;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  color: var(--muted-strong);
+  line-height: 1.7;
+}
+
+.case-problems {
+  display: grid;
+  gap: 0.9rem;
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-problems li {
+  position: relative;
+  max-width: 66ch;
+  padding-left: 1.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.case-problems li::before {
+  content: "";
+  position: absolute;
+  top: 0.85rem;
+  left: 0;
+  width: 1rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.case-steps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-steps li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-steps li:first-child {
+  padding-top: 0;
+}
+
+.case-steps li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.case-steps__number {
+  color: var(--accent);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  line-height: 1.9;
+}
+
+.case-steps h3,
+.case-edge h3 {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.case-steps p,
+.case-edge p {
+  max-width: 68ch;
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.case-stack {
+  border-top: 1px solid var(--border);
+}
+
+.case-stack__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 0.5fr) minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 1rem 1.5rem;
+  align-items: baseline;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-stack__layer {
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-stack__choice {
+  color: var(--foreground);
+  font-size: 0.98rem;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.case-stack__why {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.case-edge {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-edge article {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  background: var(--card-background);
+  padding: clamp(1.3rem, 2.2vw, 1.8rem);
+}
+
+.case-note {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 72ch;
+  margin: 2rem 0 0;
+  border: 1px solid rgba(134, 239, 172, 0.32);
+  border-radius: var(--radius-md);
+  background: rgba(34, 197, 94, 0.06);
+  padding: 1.3rem 1.5rem;
+  color: var(--muted-strong);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.case-note span {
+  color: var(--accent-bright);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-next {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-top: 1px solid var(--border);
+}
+
+.case-next__head h2 {
+  margin: 1rem 0 2.5rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-weight: 560;
+  letter-spacing: -0.06em;
+}
+
+.case-next__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-next__card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  background: var(--card-background);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    background var(--duration-normal) var(--ease-out);
+}
+
+.case-next__card > span {
+  color: var(--muted);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-next__card strong {
+  margin: 1.6rem 0 0.7rem;
+  font-size: 1.9rem;
+  font-weight: 560;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.case-next__card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.case-next__card em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.6rem;
+  color: var(--muted-strong);
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.case-cta {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.case-cta h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 560;
+  letter-spacing: -0.06em;
+}
+
+.case-cta p {
+  max-width: 46ch;
+  margin: 1rem auto 0;
+  color: var(--muted);
+}
+
+.case-cta__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .experience-section {
@@ -1157,6 +1703,31 @@ a {
     color: var(--accent-bright);
   }
 
+  .project-card:hover {
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+
+  .project-card:hover .project-card__case {
+    border-color: var(--accent-bright);
+    background: var(--accent-bright);
+    color: var(--accent-foreground);
+  }
+
+  .case-next__card:hover {
+    border-color: var(--border-strong);
+    background: var(--surface-elevated);
+  }
+
+  .case-next__card:hover em {
+    color: var(--accent-bright);
+  }
+
+  .case-back:hover {
+    border-color: var(--accent-bright);
+    color: var(--accent-bright);
+  }
+
   .contact-strip a:hover {
     background: rgba(134, 239, 172, 0.06);
   }
@@ -1172,6 +1743,11 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .project-grid > .project-card:nth-child(3n + 1):last-child {
+    grid-column: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 3rem;
@@ -1184,6 +1760,10 @@ a {
   .education-lead {
     grid-column: span 2;
     min-height: 10rem !important;
+  }
+
+  .case-next__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1237,6 +1817,33 @@ a {
 
   .contact-shell {
     gap: 4rem;
+  }
+
+  .case-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-hero__visual {
+    order: -1;
+    min-height: 22rem;
+  }
+
+  .case-section {
+    grid-template-columns: 1fr;
+  }
+
+  .case-section__head {
+    position: static;
+  }
+
+  .case-stack__row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .case-edge,
+  .case-next__grid {
+    grid-template-columns: 1fr;
   }
 }
 

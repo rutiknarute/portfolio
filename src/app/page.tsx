@@ -7,8 +7,10 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
+import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { ProjectVisual } from "@/components/project-visual";
+import { SiteFooter } from "@/components/site-footer";
 import { experience, profile, projects, skillGroups } from "@/data/portfolio";
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
@@ -111,7 +113,8 @@ export default function Home() {
             </div>
             <p>
               AI agents for everyday decisions, faster job discovery, and connected product
-              evidence — each built around a clear user and a real workflow.
+              evidence — each built around a clear user and a real workflow. Open any card for
+              the full case study: the problem, the build, and what makes it different.
             </p>
           </div>
 
@@ -136,6 +139,13 @@ export default function Home() {
                     {project.stack.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   <div className="project-card__links" aria-label={`${project.name} links`}>
+                    <Link
+                      className="project-card__case"
+                      href={`/work/${project.slug}`}
+                      aria-label={`Read the ${project.name} case study`}
+                    >
+                      Case study <ArrowUpRight size={16} aria-hidden="true" />
+                    </Link>
                     {project.githubUrl ? (
                       <a href={project.githubUrl} target="_blank" rel="noreferrer">
                         <GitHubIcon size={17} /> GitHub
@@ -249,10 +259,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer section-shell">
-        <p>© {new Date().getFullYear()} Rutik Narute</p>
-        <a href="#top">Back to top <ArrowUpRight size={14} /></a>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

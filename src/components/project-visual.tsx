@@ -19,6 +19,27 @@ export function ProjectVisual({ type }: { type: ProjectVisualType }) {
     );
   }
 
+  if (type === "beone") {
+    return (
+      <div className="visual visual--beone" aria-hidden="true">
+        <div className="beone-stack">
+          <span className="beone-ghost beone-ghost--two" />
+          <span className="beone-ghost beone-ghost--one" />
+          <div className="beone-verdict">
+            <span>POSTED 41 MIN AGO</span>
+            <strong>Software Engineer</strong>
+            <div className="beone-verdict__tags">
+              <i className="is-pass">OPT OK</i>
+              <i className="is-pass">US ONLY</i>
+              <i>0–2 YRS</i>
+            </div>
+          </div>
+        </div>
+        <span className="beone-scan">6 ATS · 18K BOARDS</span>
+      </div>
+    );
+  }
+
   if (type === "atsift") {
     return (
       <div className="visual visual--atsift" aria-hidden="true">
