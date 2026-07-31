@@ -137,8 +137,7 @@ export default async function ProjectCaseStudy({
 
           <section className="case-section section-shell" aria-labelledby="problem">
             <div className="case-section__head">
-              <span className="section-index">01 / The problem</span>
-              <h2 id="problem">What it solves.</h2>
+              <h2 id="problem"><span className="section-number">01.</span>What it solves.</h2>
             </div>
             <div className="case-section__body">
               <p className="case-lead">{caseStudy.problem.lead}</p>
@@ -150,8 +149,7 @@ export default async function ProjectCaseStudy({
 
           <section className="case-section section-shell" aria-labelledby="approach">
             <div className="case-section__head">
-              <span className="section-index">02 / The approach</span>
-              <h2 id="approach">How it works.</h2>
+              <h2 id="approach"><span className="section-number">02.</span>How it works.</h2>
             </div>
             <div className="case-section__body">
               <ol className="case-steps">
@@ -170,8 +168,7 @@ export default async function ProjectCaseStudy({
 
           <section className="case-section section-shell" aria-labelledby="built-with">
             <div className="case-section__head">
-              <span className="section-index">03 / The toolkit</span>
-              <h2 id="built-with">Built with what.</h2>
+              <h2 id="built-with"><span className="section-number">03.</span>Built with what.</h2>
             </div>
             <div className="case-section__body">
               <div className="case-stack">
@@ -188,8 +185,7 @@ export default async function ProjectCaseStudy({
 
           <section className="case-section section-shell" aria-labelledby="edge">
             <div className="case-section__head">
-              <span className="section-index">04 / The difference</span>
-              <h2 id="edge">Why it&apos;s better.</h2>
+              <h2 id="edge"><span className="section-number">04.</span>Why it&apos;s better.</h2>
             </div>
             <div className="case-section__body">
               <div className="case-edge">
@@ -211,8 +207,7 @@ export default async function ProjectCaseStudy({
 
           <section className="case-next section-shell" aria-labelledby="next">
             <div className="case-next__head">
-              <span className="section-index">Next</span>
-              <h2 id="next">Other projects.</h2>
+              <h2 id="next"><span className="section-number">05.</span>Other projects.</h2>
             </div>
             <div className="case-next__grid">
               {others.map((item) => (

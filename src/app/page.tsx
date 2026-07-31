@@ -1,5 +1,4 @@
 import {
-  ArrowDown,
   ArrowUpRight,
   Download,
   ExternalLink,
@@ -77,12 +76,20 @@ export default function Home() {
                 data systems, and product craft to turn messy problems into tools people can trust.
               </p>
               <div className="hero-actions">
-                <a className="button button--primary" href="#work">
-                  View Projects <ArrowDown size={18} aria-hidden="true" />
+                <a className="button button--primary" href="/rutik-narute-resume.pdf" download>
+                  Resume <Download size={18} aria-hidden="true" />
                 </a>
-                <a className="button button--ghost" href="/rutik-narute-resume.pdf" download>
-                  Résumé <Download size={18} aria-hidden="true" />
-                </a>
+                <div className="contact-links contact-links--hero">
+                  <a href={`mailto:${profile.email}`} aria-label="Email" title="Email">
+                    <Mail size={18} aria-hidden="true" />
+                  </a>
+                  <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+                    <GitHubIcon />
+                  </a>
+                  <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                    <LinkedInIcon />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -106,16 +113,10 @@ export default function Home() {
         </address>
 
         <section id="work" className="work-section section-shell section-space">
-          <div className="section-heading reveal">
+          <div className="section-heading section-heading--compact reveal">
             <div>
-              <span className="section-index">01 / Selected work</span>
-              <h2>Selected projects.</h2>
+              <h2><span className="section-number">01.</span>Selected projects.</h2>
             </div>
-            <p>
-              AI agents for everyday decisions, faster job discovery, and connected product
-              evidence — each built around a clear user and a real workflow. Open any card for
-              the full case study: the problem, the build, and what makes it different.
-            </p>
           </div>
 
           <div className="project-grid">
@@ -175,37 +176,74 @@ export default function Home() {
           <div className="section-shell">
             <div className="section-heading section-heading--compact reveal">
               <div>
-                <span className="section-index">02 / Experience</span>
-                <h2>Experience that delivers.</h2>
+                <h2><span className="section-number">02.</span>Experience that delivers.</h2>
               </div>
             </div>
-            <div className="experience-list">
+            <ol className="experience-list">
               {experience.map((item, index) => (
-                <article className="experience-row reveal" key={item.company}>
-                  <span className="experience-number">0{index + 1}</span>
-                  <div>
+                <li className="experience-row reveal" key={item.company}>
+                  <span className="experience-marker" aria-hidden="true">
+                    <span className="experience-dot" />
+                    <span className="experience-number">0{index + 1}</span>
+                  </span>
+                  <div className="experience-meta">
                     <span className="experience-period">{item.period}</span>
-                    <h3>{item.role}</h3>
-                    <p className="experience-company">{item.company}</p>
+                    <span className="experience-location">
+                      <MapPin size={13} aria-hidden="true" /> {item.location}
+                    </span>
                   </div>
                   <div className="experience-detail">
-                    <span className="experience-location"><MapPin size={14} /> {item.location}</span>
+                    <h3>{item.role}</h3>
+                    <p className="experience-company">{item.company}</p>
                     <p>{item.summary}</p>
                     <ul>{item.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
                   </div>
-                </article>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
         <section id="about" className="about-section section-shell section-space">
-          <div className="about-intro reveal">
-            <span className="section-index">03 / About</span>
-            <p className="about-statement">
-              Engineer by training. Product thinker by habit. I care about the invisible parts —
-              data quality, failure paths, naming, latency — and the visible moment when all of it
-              becomes <em>simple.</em>
+          <div className="section-heading section-heading--compact reveal">
+            <div>
+              <h2><span className="section-number">03.</span>About me.</h2>
+            </div>
+          </div>
+
+          <div className="about-story reveal">
+            <p className="about-story__lead">I am Rutik Narute.</p>
+            <p>
+              I grew up in Baramati, Pune. Coming to the United States for my Master&apos;s at Cal
+              State LA was a big step, especially without much network or guidance here. Most of
+              what I&apos;ve learned so far came from figuring things out on my own, sometimes the
+              hard way.
+            </p>
+            <p>
+              I just like building things that work and make sense. so instead of chasing ATS
+              scores I started building real things for real problems (orin, compliance platform
+              for Digital Product Passport — EU fashion brands). Because I believe{" "}
+              <strong>attention is earned not requested.</strong>
+            </p>
+            <p>
+              I want to be in SF and I believe opportunities happen when the right people meet the
+              right energy at the right time.....and I am not there yet but I am working every
+              single day to get there.
+            </p>
+            <p>
+              If you are hiring, building something interesting or just know someone I should be
+              talking to. You already know what to do. Right now, I&apos;m looking for
+              opportunities where I can grow and work on real problems. I&apos;m on an F-1 student
+              visa and my OPT already started in July.
+            </p>
+            <p className="about-story__close">
+              I am still building.
+              <br />
+              Would love to talk.
+            </p>
+            <p className="about-story__reach">
+              Reach me at <a href={profile.phoneHref}>{profile.phone}</a> or{" "}
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>.
             </p>
           </div>
 
@@ -239,8 +277,7 @@ export default function Home() {
         <section id="contact" className="contact-section section-space">
           <div className="section-shell contact-shell">
             <div className="contact-copy reveal">
-              <span className="section-index">04 / Contact</span>
-              <h2>Have a hard problem?</h2>
+              <h2><span className="section-number">04.</span>Have a hard problem?</h2>
               <p>Good. Those usually make the best products.</p>
               <div className="contact-links">
                 <a href={`mailto:${profile.email}`} aria-label="Email" title="Email">
