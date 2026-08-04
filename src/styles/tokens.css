@@ -1,18 +1,24 @@
 :root {
   /* Primitive tokens */
-  --ink-1000: #070907;
-  --ink-950: #0a0d09;
-  --ink-900: #10140f;
-  --ink-850: #151a13;
-  --ink-800: #1d241a;
-  --stone-50: #f2f4eb;
-  --stone-200: #d6daca;
-  --stone-400: #9da692;
-  --green-300: #86efac;
-  --green-400: #4ade80;
-  --green-500: #22c55e;
-  --green-950: #052e16;
-  --red-500: #ef4444;
+  --ink-1000: #100f0d;
+  --ink-900: #1c1b18;
+  --ink-700: #45423c;
+  --ink-500: #6d6a63;
+  --ink-300: #a3a09a;
+  --paper-0: #ffffff;
+  --paper-50: #fbfaf8;
+  --paper-100: #f5f3ef;
+  --paper-200: #ece8e1;
+  --blue-600: #1d4ed8;
+  --blue-500: #3b82f6;
+  --blue-300: #93c5fd;
+  --blue-100: #dbeafe;
+  --red-600: #b4342a;
+
+  /* Channel tokens — for the places that need a colour at partial opacity. */
+  --ink-rgb: 16 15 13;
+  --paper-rgb: 255 255 255;
+  --blue-rgb: 59 130 246;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -24,10 +30,10 @@
   --space-16: 4rem;
   --space-24: 6rem;
 
-  --radius-sm: 0.625rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
   --radius-full: 999px;
 
   --duration-fast: 160ms;
@@ -35,33 +41,40 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.22, 1.35, 0.36, 1);
 
+  /* Typography — Poppins for display, a neutral grotesk for everything else. */
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
   /* Semantic tokens */
-  --background: var(--ink-1000);
-  --foreground: var(--stone-50);
-  --surface: var(--ink-900);
-  --surface-elevated: var(--ink-850);
-  --surface-hover: var(--ink-800);
-  --muted: var(--stone-400);
-  --muted-strong: var(--stone-200);
-  --border: rgba(214, 218, 202, 0.16);
-  --border-strong: rgba(214, 218, 202, 0.3);
-  --accent: var(--green-500);
-  --accent-bright: var(--green-300);
-  --accent-foreground: var(--green-950);
-  --danger: var(--red-500);
-  --focus-ring: var(--green-300);
+  --background: var(--paper-0);
+  --foreground: var(--ink-1000);
+  --surface: var(--paper-50);
+  --surface-elevated: var(--paper-100);
+  --surface-hover: var(--paper-200);
+  --muted: var(--ink-500);
+  --muted-strong: var(--ink-700);
+  --border: rgb(var(--ink-rgb) / 0.12);
+  --border-strong: rgb(var(--ink-rgb) / 0.24);
+  --accent: var(--blue-500);
+  /* Deep enough to stay legible as text and icons on paper. */
+  --accent-bright: var(--blue-600);
+  --accent-soft: var(--blue-100);
+  --accent-foreground: var(--paper-0);
+  --danger: var(--red-600);
+  --focus-ring: var(--blue-600);
 
   /* Component tokens */
-  --nav-background: rgba(7, 9, 7, 0.76);
-  --card-background: rgba(16, 20, 15, 0.82);
+  --nav-background: rgb(var(--paper-rgb) / 0.82);
+  --card-background: var(--paper-0);
   --card-border: var(--border);
   --card-radius: var(--radius-lg);
-  --button-background: var(--accent-bright);
-  --button-foreground: var(--accent-foreground);
+  --button-background: var(--ink-1000);
+  --button-foreground: var(--paper-0);
   --button-radius: var(--radius-full);
-  --input-background: var(--ink-900);
-  --input-border: var(--border-strong);
-  --section-gutter: clamp(1.25rem, 4vw, 4rem);
+  --input-background: var(--paper-0);
+  --input-border: rgb(var(--ink-rgb) / 0.2);
+  --section-gutter: clamp(2rem, 7vw, 8rem);
   --section-space: clamp(6rem, 12vw, 10rem);
   --content-width: 90rem;
 }

@@ -600,6 +600,19 @@ export const experience = [
   },
 ];
 
+export const education = [
+  {
+    period: "2024 — 2026",
+    degree: "MS, Computer Science",
+    school: "California State University, Los Angeles",
+  },
+  {
+    period: "2019 — 2023",
+    degree: "BE, Information Technology",
+    school: "Savitribai Phule Pune University · Honors in AI & ML",
+  },
+];
+
 export const skillGroups = [
   {
     title: "Build",

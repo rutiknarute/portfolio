@@ -1,6 +1,5 @@
 import {
   ArrowUpRight,
-  Download,
   ExternalLink,
   Mail,
   MapPin,
@@ -10,7 +9,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { ProjectVisual } from "@/components/project-visual";
 import { SiteFooter } from "@/components/site-footer";
-import { experience, profile, projects, skillGroups } from "@/data/portfolio";
+import { education, experience, profile, projects, skillGroups } from "@/data/portfolio";
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
   return (
@@ -45,9 +44,14 @@ export default function Home() {
             <a href="#experience">Experience</a>
             <a href="#about">About</a>
           </div>
-          <a className="nav-cta" href="#contact">
-            Let&apos;s talk <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
+          <div className="nav-actions">
+            <a className="nav-ghost" href="/rutik-narute-resume.pdf" download>
+              Resume
+            </a>
+            <a className="nav-cta" href="#contact">
+              Let&apos;s talk <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </div>
         </nav>
       </header>
 
@@ -76,9 +80,6 @@ export default function Home() {
                 data systems, and product craft to turn messy problems into tools people can trust.
               </p>
               <div className="hero-actions">
-                <a className="button button--primary" href="/rutik-narute-resume.pdf" download>
-                  Resume <Download size={18} aria-hidden="true" />
-                </a>
                 <div className="contact-links contact-links--hero">
                   <a href={`mailto:${profile.email}`} aria-label="Email" title="Email">
                     <Mail size={18} aria-hidden="true" />
@@ -261,16 +262,13 @@ export default function Home() {
               <span>Education</span>
               <p>Computer science foundations, deep AI focus, and constant building.</p>
             </div>
-            <article>
-              <span>2024 — 2026</span>
-              <h3>MS, Computer Science</h3>
-              <p>California State University, Los Angeles</p>
-            </article>
-            <article>
-              <span>2019 — 2023</span>
-              <h3>BE, Information Technology</h3>
-              <p>Savitribai Phule Pune University · Honors in AI & ML</p>
-            </article>
+            {education.map((item) => (
+              <article key={item.degree}>
+                <span>{item.period}</span>
+                <h3>{item.degree}</h3>
+                <p>{item.school}</p>
+              </article>
+            ))}
           </div>
         </section>
 
