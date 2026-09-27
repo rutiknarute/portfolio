@@ -149,7 +149,7 @@ export function ChatAssistant() {
           </form>
 
           <p className="chat-disclaimer">
-            Answers are AI-generated from this site and can be imprecise. For anything that matters,
+            Answers use Rutik&apos;s shared information and resume and may contain mistakes. To confirm details,
             email <a href={`mailto:${profile.email}`}>{profile.email}</a>.
           </p>
         </section>

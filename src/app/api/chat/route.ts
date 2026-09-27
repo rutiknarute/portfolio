@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
             parts: [{ text: message.text }],
           })),
           generationConfig: {
-            temperature: 0.4,
+            temperature: 0.1,
             maxOutputTokens: 900,
             // Short factual answers off a fixed profile don't need deliberation.
             thinkingConfig: { thinkingLevel: "low" },

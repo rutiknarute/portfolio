@@ -170,6 +170,12 @@ a {
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  color: var(--foreground);
+  background: var(--background);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,9 +203,60 @@ a {
   text-wrap: balance;
 }
 
-.hero-title span {
+.particle-title {
+  position: relative;
+  z-index: 1;
+  color: var(--foreground);
+}
+
+.hero-title .particle-line {
   display: block;
+  white-space: nowrap;
+}
+
+.hero-title .particle-line:nth-child(2) {
   color: var(--accent-bright);
+}
+
+.particle-title[data-ready="true"] .particle-line {
+  opacity: 0;
+}
+
+.particle-canvas {
+  position: absolute;
+  inset: -144px;
+  width: calc(100% + 288px);
+  height: calc(100% + 288px);
+  pointer-events: none;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 120%;
+  height: 62%;
+  left: -10%;
+  top: 17%;
+  border: 1px solid rgb(var(--ink-rgb) / 0.06);
+  border-radius: 50%;
+  transform: rotate(-32deg);
+  pointer-events: none;
+}
+
+.hero::after {
+  transform: rotate(36deg);
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .particle-title[data-ready="true"] .particle-line {
+    opacity: 1;
+  }
+
+  .particle-canvas {
+    display: none;
+  }
 }
 
 .hero-bottom {
@@ -1485,6 +1542,24 @@ a {
 
 .experience-detail .experience-company {
   margin-top: 0;
+}
+
+.experience-detail .experience-highlights {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.2rem 0 0;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+
+.experience-detail .experience-highlights li {
+  border: 0;
+  padding: 0;
+  color: var(--muted-strong);
+  font-family: inherit;
+  font-size: 0.95rem;
+  letter-spacing: normal;
+  line-height: 1.55;
 }
 
 .experience-location {

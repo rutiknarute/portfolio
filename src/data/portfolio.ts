@@ -572,6 +572,21 @@ export const projects: Project[] = [
 
 export const experience = [
   {
+    period: "Aug 2026 — Present",
+    role: "Software Engineer (AI & Development)",
+    company: "Zyter",
+    location: "Los Angeles, CA",
+    summary:
+      "Orchestrated production AI agents and executable clinical workflows across UM, Care Management, and Prior Authorization in Zyter Symphony Studio.",
+    bullets: [
+      "Orchestrated 70+ production AI agents in Zyter Symphony Studio across UM, Care Management, and Prior Authorization, chaining agent outputs, mapping healthcare data, and automating multi-step clinical workflows.",
+      "Implemented Python and Voice AI workflows that connected conversational agents, backend tools, APIs, and healthcare systems into executable end-to-end processes.",
+      "Configured, tuned, tested, and debugged agents in Symphony Studio, including tool calls, model behavior, and multi-agent execution paths.",
+      "Engineered across AWS, Kubernetes, GitLab CI/CD, Python services, APIs, and frontend layers, resolving integration, deployment, and runtime issues in the Symphony platform.",
+    ],
+    tags: ["AI agents", "Voice AI", "Healthcare workflows"],
+  },
+  {
     period: "Dec 2025 — Mar 2026",
     role: "AI Software Engineer Intern",
     company: "Latina Hustle · LA-Tech.org",

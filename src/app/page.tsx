@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { ProjectVisual } from "@/components/project-visual";
 import { SiteFooter } from "@/components/site-footer";
+import { RepulsionTitle } from "@/components/repulsion-title";
 import { education, experience, profile, projects, skillGroups } from "@/data/portfolio";
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
@@ -70,14 +71,12 @@ export default function Home() {
                 with me
               </span>
             </div>
-            <h1 className="hero-title">
-              Make AI
-              <span>useful.</span>
-            </h1>
+            <RepulsionTitle />
             <div className="hero-bottom">
               <p>
-                I&apos;m <strong>Rutik</strong>, an AI software engineer blending language models,
-                data systems, and product craft to turn messy problems into tools people can trust.
+                I&apos;m <strong>Rutik</strong>. Coming from a family rooted in the pharmacy business,
+                healthcare has always been close to me. Today, I build AI agents to simplify complex
+                healthcare workflows and solve real-world problems.
               </p>
               <div className="hero-actions">
                 <div className="contact-links contact-links--hero">
@@ -197,6 +196,7 @@ export default function Home() {
                     <h3>{item.role}</h3>
                     <p className="experience-company">{item.company}</p>
                     <p>{item.summary}</p>
+                    {item.bullets && <ul className="experience-highlights">{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
                     <ul>{item.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
                   </div>
                 </li>
