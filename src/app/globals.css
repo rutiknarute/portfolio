@@ -469,7 +469,7 @@ a {
 }
 
 .section-heading--compact {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 /* Section numbers sit inside the heading itself: "01. Selected projects." */
@@ -2405,7 +2405,8 @@ a {
 
   .section-heading h2,
   .contact-copy h2 {
-    font-size: clamp(2.7rem, 14vw, 4.2rem);
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    overflow-wrap: anywhere;
   }
 
   .project-card__visual {
