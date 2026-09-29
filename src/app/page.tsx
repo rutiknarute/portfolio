@@ -60,23 +60,14 @@ export default function Home() {
         <section id="top" className="hero section-shell">
           <div className="hero-copy">
             <div className="eyebrow">
-              <span className="status-dot" aria-hidden="true" />
-              <span className="eyebrow-copy">
-                Let&apos;s grow from
-                <span className="speed-range">
-                  <strong>1X</strong>
-                  <span className="speed-track" aria-hidden="true" />
-                  <strong>100X</strong>
-                </span>
-                with me
-              </span>
+              <span className="eyebrow-copy">I build useful software for real problems.</span>
             </div>
             <RepulsionTitle />
             <div className="hero-bottom">
               <p>
-                I&apos;m <strong>Rutik</strong>. Coming from a family rooted in the pharmacy business,
-                healthcare has always been close to me. Today, I build AI agents to simplify complex
-                healthcare workflows and solve real-world problems.
+                I&apos;m <strong>Rutik</strong> — an AI software engineer who likes taking messy,
+                real-world problems and making them easier to use. My family&apos;s pharmacy business
+                is where my interest in healthcare started.
               </p>
               <div className="hero-actions">
                 <div className="contact-links contact-links--hero">
@@ -115,7 +106,7 @@ export default function Home() {
         <section id="work" className="work-section section-shell section-space">
           <div className="section-heading section-heading--compact reveal">
             <div>
-              <h2><span className="section-number">01.</span>Selected projects.</h2>
+              <h2><span className="section-number">01.</span>Selected work.</h2>
             </div>
           </div>
 
@@ -176,7 +167,7 @@ export default function Home() {
           <div className="section-shell">
             <div className="section-heading section-heading--compact reveal">
               <div>
-                <h2><span className="section-number">02.</span>Experience that delivers.</h2>
+                <h2><span className="section-number">02.</span>Where I&apos;ve been building.</h2>
               </div>
             </div>
             <ol className="experience-list">
@@ -208,7 +199,7 @@ export default function Home() {
         <section id="about" className="about-section section-shell section-space">
           <div className="section-heading section-heading--compact reveal">
             <div>
-              <h2><span className="section-number">03.</span>About me.</h2>
+              <h2><span className="section-number">03.</span>A little context.</h2>
             </div>
           </div>
 
@@ -275,8 +266,8 @@ export default function Home() {
         <section id="contact" className="contact-section section-space">
           <div className="section-shell contact-shell">
             <div className="contact-copy reveal">
-              <h2><span className="section-number">04.</span>Have a hard problem?</h2>
-              <p>Good. Those usually make the best products.</p>
+              <h2><span className="section-number">04.</span>Let&apos;s make something useful.</h2>
+              <p>If the problem is a little messy, I&apos;m probably interested.</p>
               <div className="contact-links">
                 <a href={`mailto:${profile.email}`} aria-label="Email" title="Email">
                   <Mail size={18} aria-hidden="true" />
