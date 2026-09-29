@@ -46,7 +46,12 @@ export default function Home() {
             <a href="#about">About</a>
           </div>
           <div className="nav-actions">
-            <a className="nav-ghost" href="/rutik-narute-resume.pdf" download>
+            <a
+              className="nav-ghost"
+              href="https://drive.google.com/file/d/1ousomYqZpogNKLb1gztBRS_3ZSdt6zf-/view?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+            >
               Resume
             </a>
             <a className="nav-cta" href="#contact">
